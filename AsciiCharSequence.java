@@ -4,41 +4,34 @@
 
 //Solving:
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+import java.util.Arrays;
+
+public class AsciiCharSequence implements CharSequence {
+    public byte[] bytes;
+
+    public AsciiCharSequence(byte[] bytes) {
+        this.bytes = bytes.clone();
     }
 
-    public static class AsciiCharSequence implements CharSequence {
-        //Твой код здесь
-        public byte[] bytes;
+    @Override
+    public char charAt(int index) {
+        return (char) bytes[index];
+    }
 
-        public AsciiCharSequence(byte[] bytes) {
-            this.bytes = bytes.clone();
-        }
+    @Override
+    public int length() {
+        return bytes.length;
+    }
 
-        public char charAt(int index) {
-            return (char) bytes[index];
-        }
+    @Override
+    public AsciiCharSequence subSequence(int start, int end) {
+        return new AsciiCharSequence(Arrays.copyOfRange(bytes, start, end));
+    }
 
-        public int length() {
-            return bytes.length;
-        }
-
-        public AsciiCharSequence subSequence(int start, int end) {
-            byte[] sub = new byte[end - start];
-            int j = 0;
-            for (int i = start; i < end; i++) {
-                sub[j] = bytes[i];
-                j++;
-            }
-            return new AsciiCharSequence(sub);
-        }
-
-        public String toString() {
-            return new String(bytes);
-        }
-
+    @Override
+    public String toString() {
+        return new String(bytes);
     }
 
 }
+
