@@ -54,10 +54,9 @@ public class countingWordsWithStreamAPI {
                 .entrySet()
                 .stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue()
-                        .reversed()
-                        .thenComparing(Map.Entry.comparingByKey()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (e1, e2) -> e1, LinkedHashMap::new))
+                .reversed()
+                .thenComparing(Map.Entry.comparingByKey()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new))
                 .entrySet()
                 .stream()
                 .limit(10)
